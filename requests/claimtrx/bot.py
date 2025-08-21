@@ -134,7 +134,7 @@ def cooldown(total_seconds: int, message: str = "", final_message: str ="       
 #=============================
 #       Create Browser
 #=============================
-def parse_cookie_string(cookie_str: str, domain: str):
+def parse_cookie_string(cookie_str: str):
     """Chuyển cookie string thành list dict cho Playwright"""
     cookies = []
     for item in cookie_str.split("; "):
@@ -142,49 +142,22 @@ def parse_cookie_string(cookie_str: str, domain: str):
             name, value = item.split("=", 1)
             cookies.append({
                 "name": name.strip(),
-                "value": value.strip(),
-                "domain": domain,
-                "path": "/"
+                "value": value.strip()
             })
     return cookies
 
-def create_browser(user_agent=None, cookie_str=None, domain=None):
-        args = [
-            "--disable-blink-features=AutomationControlled",  # tắt dấu hiệu bot
-            "--mute-audio",  # tắt tiếng
-            "--disable-infobars",
-            "--disable-notifications",
-            "--disable-popup-blocking",
-            "--disable-extensions",
-        ]
+def create_session():
+    url = 'https://claimtrx.com/'
+    s = requests.Session()
+    headers = {
+        'User-Agent': user_agent
+    }
+    cookies = parse_cookie_string(cookie_str)
+    for a in cookies:
+        s.cookies.update(cookiejar_from_dict(new_cookies_dict))
+    responese = s.get(url=url,headers=headers,cookies=cookies)
+    return s, responese
 
-        browser = p.chromium.launch(headless=False, args=args)
-        context = browser.new_context(
-            user_agent=user_agent if user_agent else None,
-            viewport={"width": 1366, "height": 768}
-        )
-
-        # Thêm cookie nếu có
-        if cookie_str and domain:
-            cookies = parse_cookie_string(cookie_str, domain)
-            context.add_cookies(cookies)
-
-        page = context.new_page()
-
-        # Patch để tránh bị detect automation
-        page.add_init_script("""
-        Object.defineProperty(navigator, 'webdriver', {
-            get: () => undefined
-        });
-        Object.defineProperty(navigator, 'languages', {
-            get: () => ['en-US', 'en']
-        });
-        Object.defineProperty(navigator, 'plugins', {
-            get: () => [1, 2, 3, 4, 5]
-        });
-        """)
-
-        return browser, context, page
 
 #=============================
 #       BOT FUNCTION
@@ -213,36 +186,7 @@ def save_canvas(page, xpath: str, filename: str):
     print(f"[+] Saved canvas -> {filename}")
 
 def faucet(context,page):
-    for i in range(3):
-        click_popup = page.locator('//*[@id="app"]/div/div[3]/section/div[2]/div[2]/div/div')
-        print('Trying click AdPopUp')
-        click_popup.click()
-        tabs = context.pages
-        for j in tabs:
-            if not('claimtrx' in j.url()):
-                j.close()
-                print(f'{lgreen}|| Closed trash tab')
-            else:
-                page = j
-
-    captcha_input = page.locator('//*[@id="app"]/div/div[3]/section/div[3]/div[1]/form/center[2]/div/input')
-    captcha_input.scroll_into_view_if_needed()
-    print(f'{lgreen}Scrolled to captcha')
-    download_img(page, '//*[@id="Imageid"]', 'captcha.png')
-    print(f'{lgreen}Saved Captcha Canvas')
-    captchabase64= image_to_base64('captcha.png')
-    textinput = imgToText(API_KEY,'base64',captchabase64)
-
-    text_input = page.locator('//*[@id="app"]/div/div[3]/section/div[3]/div[1]/form/center[2]/div/input')
-    text_input.type(textinput)
-    claim = page.locator('//*[@id="app"]/div/div[3]/section/div[3]/div[1]/form/button')
-    claim.scroll_into_view_if_needed()
-    claim.click()
-    time.sleep(1)
-    status = page.locator('//*[@id="app"]/div/div[3]/section/div[2]/div[1]/div/div/div/div/div[1]/div/h4').inner_text()
-    if status:
-        return False
-    return True
+    pass
 
 
 # ==========================
@@ -252,23 +196,10 @@ if __name__ == "__main__":
     with sync_playwright() as p:
         user_agent, cookie_str = dataRead()
         domain = "claimtrx.com"
-
-        browser, context, page = create_browser(
-            user_agent= user_agent,
-            cookie_str= cookie_str,
-            domain= domain
-        )
+        s, response = create_session()
+        with open('response.txt','w',encoding='utf-8') as f:
+            f.write(response.status_code+'\n'+response.text)
         getbalance()
-        while True:
-            page.goto("https://claimtrx.com/faucet", wait_until="domcontentloaded", timeout=60000)
-            print(page.title())
-            try:
-                claim_status = faucet(context,page)
-                if claim_status:
-                    cooldown(4*60,f'{lblue}Wait for next claim ',f'{lgreen}Claiming...          {reset}')
-            except:
-                print(f'{lred}|!| Claim Fail{reset}')
-        input(f"{lblack}Press Enter to close...")
-        browser.close()
+        
 
 
