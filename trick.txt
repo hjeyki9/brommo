@@ -1,0 +1,5 @@
+Wait for element visible,present:
+element = WebDriverWait(driver, 15).until(
+    EC.visibility_of_element_located((By.XPATH, "//button[text()='Đăng nhập']"))
+)
+

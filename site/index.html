@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Faucet List (8 cột)</title>
+<style>
+  :root{
+    --bg:#0b0d10; --card:#141820; --muted:#aab2c0; --text:#e8ecf1; --accent:#7bd389; --warn:#ffd166; --border:#232a36;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg, #0b0d10 0%, #0e1117 100%);
+    color:var(--text);
+  }
+  header{
+    display:flex; align-items:center; gap:.75rem; padding:16px 20px; position:sticky; top:0;
+    background:rgba(11,13,16,.7); backdrop-filter:saturate(150%) blur(8px); border-bottom:1px solid var(--border); z-index:5;
+  }
+  header h1{font-size:18px; font-weight:700; margin:0}
+  header .spacer{flex:1}
+  button, .file-label{
+    border:1px solid var(--border); background:var(--card); color:var(--text); padding:8px 12px; border-radius:12px;
+    cursor:pointer; font-weight:600; transition:transform .05s ease, border-color .2s ease, background .2s ease;
+  }
+  button:hover, .file-label:hover{border-color:#2f394a}
+  button:active{transform:scale(.98)}
+  input[type="file"]{display:none}
+  .hint{color:var(--muted); font-size:12px}
+  main{padding:18px 20px 40px}
+  .grid{
+    display:grid; grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap:12px;
+  }
+  .card{
+    background:linear-gradient(180deg, rgba(20,24,32,1) 0%, rgba(17,21,28,1) 100%);
+    border:1px solid var(--border); border-radius:16px; padding:14px; display:flex; flex-direction:column; gap:10px;
+    min-height:120px; position:relative; transition:transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card:hover{transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.25); border-color:#2a3342}
+  .card a.title{
+    color:var(--text); text-decoration:none; font-weight:700; line-height:1.25; font-size:14px; word-break:break-word;
+  }
+  .meta{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; color:var(--muted)}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; border:1px solid var(--border); padding:4px 8px; border-radius:999px; background:#10141b;
+  }
+  .stars{letter-spacing:1px; font-feature-settings:"kern" 1}
+  .stars .filled{filter:drop-shadow(0 0 6px rgba(123,211,137,.35))}
+  .claim{color:#111; background:var(--warn); border-color:#f0c24d; font-weight:700}
+  .index{
+    position:absolute; top:8px; right:10px; font-size:11px; color:#7a8699; user-select:none;
+  }
+  .toolbar{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-left:auto;
+  }
+  .status{font-size:12px; color:var(--muted)}
+  .hidden{display:none}
+  /* Optional: make it scroll nicely on small screens while still keeping 8 columns */
+  @media (max-width: 1280px){
+    .grid{min-width:1100px} /* allow horizontal scroll to keep đúng 8 cột */
+    main{overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Faucet Board</h1>
+    <span class="hint">Định dạng dòng: <code>Tên,link,⭐,thời gian</code></span>
+    <div class="spacer"></div>
+    <div class="toolbar">
+      <button id="reloadBtn" title="Tải lại data.txt">Reload</button>
+      <label class="file-label" for="filePick" title="Fallback khi bị chặn file://">Chọn data.txt</label>
+      <input id="filePick" type="file" accept=".txt,.csv" />
+      <span id="status" class="status">Đang chờ dữ liệu…</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid"></div>
+  </main>
+
+<script>
+(function(){
+  const grid = document.getElementById('grid');
+  const status = document.getElementById('status');
+  const reloadBtn = document.getElementById('reloadBtn');
+  const fileInput = document.getElementById('filePick');
+
+  function setStatus(msg, ok=true){
+    status.textContent = msg;
+    status.style.color = ok ? 'var(--muted)' : '#ff7b7b';
+  }
+
+  function toStars(n){
+    const stars = Math.max(0, Math.min(5, Number(n) || 0));
+    let s = '';
+    for(let i=0;i<5;i++){
+      s += i < stars ? '<span class="filled">★</span>' : '☆';
+    }
+    return `<span class="stars" aria-label="${stars} sao">${s}</span>`;
+  }
+
+  function parse(text){
+    // Hỗ trợ: bỏ dòng trống, dòng comment bắt đầu bằng #.
+    const lines = text.split(/\r?\n/).map(l=>l.trim()).filter(l=>l && !l.startsWith('#'));
+    const items = [];
+    for (const line of lines){
+      const parts = line.split(',').map(s=>s.trim());
+      if (parts.length < 4) continue;
+      const [name, link, stars, claim] = parts;
+      items.push({ name, link, stars, claim });
+    }
+    return items;
+  }
+
+  function render(items){
+    grid.innerHTML = '';
+    if (!items.length){
+      setStatus('Không có dòng hợp lệ trong data.txt', false);
+      return;
+    }
+    items.forEach((it, idx)=>{
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="index">#${idx+1}</div>
+        <a class="title" href="${it.link}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.name || 'Unnamed')}</a>
+        <div class="meta">
+          <span class="badge" title="Đánh giá">${toStars(it.stars)}</span>
+          <span class="badge claim" title="Thời gian claim">${escapeHtml(it.claim || '')}</span>
+          <span class="badge" title="Link">${escapeHtml(shorten(it.link || ''))}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    setStatus(`Đã tải ${items.length} dòng.`);
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function shorten(url){
+    try{
+      const u = new URL(url, location.href);
+      const host = u.host.replace(/^www\./,'');
+      let path = u.pathname.replace(/\/+/g,'/').replace(/^\/|\/$/g,'');
+      if (path.length > 28) path = path.slice(0,25)+'…';
+      return host + (path ? '/' + path : '');
+    }catch{ return url.length>36 ? url.slice(0,33)+'…' : url; }
+  }
+
+  async function loadFromDataTxt(){
+    setStatus('Đang đọc data.txt…');
+    try{
+      const res = await fetch('data.txt?cacheBust=' + Date.now(), { cache:'no-store' });
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      const text = await res.text();
+      render(parse(text));
+    }catch(err){
+      setStatus('Không đọc được data.txt. Dùng nút "Chọn data.txt".', false);
+      console.error(err);
+    }
+  }
+
+  function handleFile(file){
+    const reader = new FileReader();
+    setStatus('Đang đọc file đã chọn…');
+    reader.onload = () => {
+      try{
+        const text = String(reader.result || '');
+        render(parse(text));
+      }catch(e){
+        setStatus('Lỗi parse file.', false);
+        console.error(e);
+      }
+    };
+    reader.onerror = () => setStatus('Không đọc được file.', false);
+    reader.readAsText(file, 'utf-8');
+  }
+
+  reloadBtn.addEventListener('click', loadFromDataTxt);
+  fileInput.addEventListener('change', (e)=>{
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  });
+
+  // Tự tải data.txt lần đầu (nếu đang chạy qua http server)
+  loadFromDataTxt();
+
+  // --- Demo nhỏ nếu không có file (comment nếu không cần) ---
+  // Nếu fetch thất bại, vẫn còn status đỏ yêu cầu chọn file. Đoạn demo dưới chỉ để test nhanh:
+  // setTimeout(()=>{
+  //   if (grid.children.length===0){
+  //     const demo = `# Demo
+  // Bitcoin Faucet,https://example.com/claim,5,60 phút
+  // ETH Drip,https://example.org/faucet,4,30 phút
+  // LTC Rain,https://example.net/go,3,15 phút
+  // Doge Tap,https://faucet.test/claim,5,10 phút
+  // `;
+  //     render(parse(demo));
+  //   }
+  // }, 6000);
+})();
+</script>
+</body>
+</html>

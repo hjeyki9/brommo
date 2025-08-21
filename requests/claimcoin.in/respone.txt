@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Faucet | ClaimCoin - ClaimCoin Faucet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Green top bar color -->
+
+<meta name="theme-color" content="#0f172a">
+    <meta name="referrer" content="origin">
+    <meta content="ClaimCoin Faucet" name="description" />
+    <meta content="Vie Faucet Script" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="https://claimcoin.in/assets/images/ccfavi.png">
+
+    <!-- Bootstrap Css -->
+    <link href="https://claimcoin.in/assets/css/bootstrap.min.css?v=4.4.2" id="bootstrap-style" rel="stylesheet" type="text/css" /><link href="https://claimcoin.in/assets/css/app.min.css?v=4.4.2" id="bootstrap-style" rel="stylesheet" type="text/css" />   <!-- Icons Css -->
+    <link href="https://claimcoin.in/assets/css/icons.min.css?v=4.4.2" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="https://claimcoin.in/assets/css/styles.css?v=4.4.2" rel="stylesheet" type="text/css" />
+     
+   <style>
+
+    .cards {
+box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+border: #3CB371;
+   color: #3CB371;
+   padding: 12px;
+}
+
+.card {
+
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; border: #333;
+
+   color: #3CB371;
+   padding: 6px;
+
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #3CB371;
+}
+
+p, a, .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.btn-info, .btn-brand-02 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.bg-image {
+    background-color: #3CB371;
+    color: #3CB371;
+    padding: 100px 0;
+    text-align: center;
+}
+
+  
+
+body {
+  background: #EEF2F7;
+}
+.navbar-header {
+    background-color: #233142;
+}
+.vertical-menu {
+    background-color: #000;
+    color: #fff;
+}
+.vertical-menu-btn {
+    background-color: #000;
+    color: #fff;
+}
+
+
+/* General styles for the menu */
+li a {
+    color: #ffffff !important; /* Force white font color */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+li a:hover {
+    color: #f5f5f5 !important; /* Force slightly off-white for hover effect */
+    transition: 0.3s;
+}
+
+/* Icon color */
+i {
+    color: #ffffff !important; /* Force white icons */
+}
+
+/* Submenu styles */
+.sub-menu {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent white background for submenu */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.sub-menu li a {
+    color: #ffffff !important; /* Force white font for submenu links */
+}
+
+.sub-menu li a:hover {
+    color: #f5f5f5 !important; /* Force slightly off-white on hover for submenu links */
+}
+
+/* Menu title */
+.menu-title {
+    color: #ffffff !important; /* Force white font color for the section titles */
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+/* For waves-effect and has-arrow classes */
+.has-arrow:after {
+    content: '\f078'; /* FontAwesome down arrow */
+    font-family: 'FontAwesome';
+    color: #ffffff !important; /* Force white arrow */
+    margin-left: auto;
+}
+
+.waves-effect:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slight transparent white background on hover */
+    border-radius: 8px;
+    transition: 0.3s;
+}
+/* Default state before click: white background with green text */
+.nav-tabs .nav-link {
+    background-color: #3CB371; /* White background */
+    color: #27ae60; /* Green text */
+    border: 1px solid #27ae60; /* Optional green border */
+  padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Hover state */
+.nav-tabs .nav-link:hover {
+    background-color: #f5f5f5; /* Slightly darker white on hover */
+    color: #27ae60; /* Keep text green */
+}
+
+/* Active state after click: dark background with white text */
+.nav-tabs .nav-link.active {
+    background-color: #2c3a52; /* Dark background */
+    color: #ffffff; /* White text */
+    border: none; /* Remove border */
+}
+
+/* Add a transition effect when switching tabs */
+.nav-tabs .nav-link.active {
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Badge styling to adjust alignment */
+.nav-tabs .badge-pill {
+    margin-left: 5px; /* Adjust spacing between tab name and badge */
+}
+
+/* Ensure inactive tab font color is green */
+.nav-tabs .nav-link:not(.active) {
+    color: #27ae60; /* Green text for inactive tabs */
+}
+
+
+    /* Card Styling */
+
+        .telegram-card {
+
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Telegram Icon */
+        .telegram-card img {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .telegram-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .telegram-card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .telegram-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0088cc;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .telegram-button:hover {
+            background-color: #0077b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .telegram-card {
+                width: 90%;
+            }
+        }
+        
+     
+        .card-1 {
+            position: relative;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .header {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #008080;
+        }
+        .code {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+            margin: 20px 0;
+        }
+        .message {
+            font-size: 14px;
+            color: #008080;
+        }
+        .discount-tag {
+            position: absolute;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 8px;
+        }
+        .tag-left {
+            top: 10px;
+            left: 10px;
+        }
+        .tag-right {
+            top: 10px;
+            right: 10px;
+        }
+   
+/* Container styling */
+.processor-select-container {
+  text-align: center;
+  margin: 30px auto;
+}
+
+/* Label styling */
+.processor-select-container label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3a52;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Select box styling */
+#processor {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid #6c5ce7;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #2c3a52;
+  outline: none;
+  transition: all 0.3s ease;
+  max-width: 300px;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover & focus effects */
+#processor:hover,
+#processor:focus {
+  border-color: #00cec9;
+  box-shadow: 0 0 0 3px rgba(0, 206, 201, 0.2);
+  background-color: #f9f9ff;
+  cursor: pointer;
+}
+
+ </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LXG101TQEW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LXG101TQEW');
+</script>
+
+</head>
+
+
+<body data-sidebar="dark">
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+
+                    <div class="navbar-brand-box">
+                        <a href="https://claimcoin.in/" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="https://claimcoin.in/assets/images/ccfavi.png" alt="" style="height: 40px">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="https://claimcoin.in/assets/images/logo2.png" alt="" style="height: 40px">
+                            </span>
+                        </a>
+                    </div>
+
+                  
+                    <button type="button" class="btn px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="dropdown d-inline-block d-lg-none ml-2">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+           
+       
+
+
+                    <div class="dropdown d-inline-block" id="notifications">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="bx bx-bell"></i>
+                                                    </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0" key="t-notifications"> Notifications </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar="init" style="max-height: 230px;">
+                                <div class="simplebar-wrapper" style="margin: 0px;">
+                                    <div class="simplebar-height-auto-observer-wrapper">
+                                        <div class="simplebar-height-auto-observer"></div>
+                                    </div>
+                                    <div class="simplebar-mask">
+                                        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                            <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
+                                                <div class="simplebar-content" style="padding: 0px;">
+                                                                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>
+                                </div>
+                                <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                    <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
+                                </div>
+                                <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                                    <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="https://claimcoin.in/assets/images/users/user.png" alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ml-1" key="t-henry">hjeyki9</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a class="dropdown-item" href="https://claimcoin.in/profile"><i class="far fa-user-circle"></i> <span key="t-profile">Profile</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="https://claimcoin.in/auth/logout"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+       <!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+    <div data-simplebar class="h-100">
+        <div id="sidebar-menu">
+            <ul class="metismenu list-unstyled" id="side-menu">
+
+                <li class="menu-title">Main</li>
+
+                <li>
+                    <a href="https://claimcoin.in/dashboard" class="waves-effect">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                 <li>
+
+                    <a href="https://claimcoin.in/referrals" class="waves-effect">
+
+                        <i class="fas fa-users"></i>
+                        <span>Referrals</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://claimcoin.in/withdraw" class="waves-effect">
+                        <i class="fas fa-wallet"></i>
+                        <span>Withdraw</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://claimcoin.in/leaderboard" class="waves-effect">
+                        <i class="fas fa-list-ol"></i>
+                        <span>Weekly Contest</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Earn Crypto</li>
+
+                                <li>
+                    <a href="https://claimcoin.in/faucet" class="waves-effect">
+                        <i class="fas fa-faucet"></i>
+                        <span>Manual Faucet 
+                            <i class='fa fa-check'></i>                        </span>
+                    </a>
+                </li>
+                
+               
+                                <li>
+                    <a href="https://claimcoin.in/ptc" class="waves-effect">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <span>PTC <span class="badge badge-info">46</span></span>
+                    </a>
+                </li>
+                 
+                 
+                
+                <li>
+                    <a href="https://claimcoin.in/bitco" class="waves-effect">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <span>Surf Ads <span class="badge badge-info">41</span></span>
+                    </a>
+                </li>
+                
+                 
+                 
+                <li>
+                    <a href="https://claimcoin.in/links" class="waves-effect">
+                        <i class="fas fa-link"></i>
+                        <span>Shortlinks <span class="badge badge-success">460</span></span>
+                    </a>
+                </li>
+                                
+                                <li>
+                    <a href="https://claimcoin.in/madfaucet" class="waves-effect">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast Faucet ✅</span>
+                    </a>
+                </li>
+                                 
+                <li>
+
+                    <a href="https://claimcoin.in/auto" class="waves-effect">
+                        <i class="fas fa-robot"></i>
+                        <span>Auto Faucet</span>
+                    </a>
+                </li>
+                
+
+
+                                <li>
+                    <a href="https://claimcoin.in/coupon" class="waves-effect">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Coupon</span>
+                    </a>
+                </li>
+                
+                                <li>
+                    <a href="https://claimcoin.in/achievements" class="waves-effect">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </a>
+                </li>
+                
+                
+                
+                
+                
+                
+                                <li>
+                    <a href="https://claimcoin.in/tasks" class="waves-effect">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks <span class="badge badge-warning">2</span></span>
+                    </a>
+                </li>
+                                   
+                                                            <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                        <i class="far fa-newspaper"></i>
+                                        <span key="t-offerwall">Offerwalls</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+<li><a href="https://claimcoin.in/offerwall/flukelabs" key="t-flukelabs">FlukeLabs</a></li>
+
+    <li><a href="https://claimcoin.in/offerwall/bitcotasks" key="t-bitcotasks">BitcoTasks</a></li>
+                                    </ul>
+                                </li>
+
+    
+                        
+              
+
+                <li class="h2 menu-title">Finance</li>
+
+                <li>
+                    <a href="https://claimcoin.in/deposit" class="waves-effect">
+                        <i class="fas fa-donate"></i>
+                        <span>Deposit</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://claimcoin.in/transfer" class="waves-effect">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transfer</span>
+                    </a>
+                </li>
+                         <li>
+                    <a href="https://claimcoin.in/advertise" class="waves-effect">
+                        <i class="fas fa-ad"></i>
+                        <span>Creat Ad</span>
+                    </a>
+                </li>
+                        
+                      <li>
+                    <a href="https://claimcoin.in/advertise/manage" class="waves-effect">
+                        <i class="fas fa-random"></i>
+                        <span>Manage Ads</span>
+                    </a>
+                </li>
+               
+
+                                <li class="menu-title">Pages</li>
+                                    <li>
+                        <a href="https://claimcoin.in/page/disclaimer" class="waves-effect">
+                            <span>Disclaimer</span>
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="https://claimcoin.in/page/contact-us" class="waves-effect">
+                            <span>Contact Us</span>
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="https://claimcoin.in/page/privacy-policy" class="waves-effect">
+                            <span>Privacy Policy</span>
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="https://claimcoin.in/page/terms" class="waves-effect">
+                            <span>Terms Of Service</span>
+                        </a>
+                    </li>
+                
+                <li class="menu-title">Account</li>
+                
+
+                <li>
+                    <a href="https://claimcoin.in/profile" class="waves-effect">
+                        <i class="far fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://claimcoin.in/history" class="waves-effect">
+                        <i class="fas fa-history"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Left Sidebar End -->
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+
+                                <div class="container-fluid">
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">ClaimCoin</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="https://claimcoin.in/">ClaimCoin</a></li>
+                                        <li class="breadcrumb-item active">Faucet</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="ads">
+    <ins class="6865fff2530e975de8de5812" style="display:inline-block;width:1px;height:1px;"></ins><script>!function(e,n,c,t,o,r,d){!function e(n,c,t,o,r,m,d,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js?v="+d,a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","6865fff2530e975de8de5812",["cdn.bmcdn6.com"], 0, new Date().getTime())}();</script></div>
+<div class="row">
+    <div class="col-md-6 col-xl-3 mb-3 mb-xl-3">
+        <div class="cards mini-stats-wid">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                                                    <h4 class="lh-1 mb-1 font-weight-bold">READY</h4>
+                                            </div>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  
+   
+</div>
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6 order-md-2 mb-4 text-center">
+              
+                            <form action="https://claimcoin.in/faucet/verify" method="POST">
+                   <center>
+                    <div class="mb-2"><select class="form-control" id="selectCaptcha" name="captcha"><option value="recaptchav3">Recaptcha V3</option></select></div><script src="https://www.google.com/recaptcha/api.js?render=6LdnVw4qAAAAAFPMxvegAK9JcBflI-0tb8YKMxZU"></script>
+		<script>
+		grecaptcha.ready(function() {
+			grecaptcha.execute("6LdnVw4qAAAAAFPMxvegAK9JcBflI-0tb8YKMxZU", {action: "homepage"}).then(function(token) {
+				$("#recaptchav3Token").val(token);
+			});
+		});
+		</script>
+		<input type="hidden" id="recaptchav3Token" name="recaptchav3">
+		<div id="recaptchav3" class="captcha" style="display: none;">
+		This site is protected by reCAPTCHA and the Google
+    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+		</div>                </center>
+                  <input type="hidden" name="antibotlinks" id="antibotlinks" value="" /><div class="alert alert-warning text-center" id="atb-instruction"><div class="alert-body">Please click on the Anti-Bot links in the following order <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAAYCAYAAADeUlK2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEDklEQVRoge2ZT2gdRRzHP4b4CCGEGmsotSo6dSzooQx6E+qxiEoPNSBiQazUVjwoeNBSeuipiH8uCrVKQXsS8eChiEgLFSUWGT1ohR9OiVq0jc8Qg4QSQvAw85rtZN97O7vv0RfdDyzz9rez353d33dnZ+ZBzf8Lo/RzRunLRuktVeI1g8VQtN8ARoHlivGaASJO8nAo46SlxmsGiLw3GfLf2JR4zQARJ7m1HyctNV4zQAy32b8u3bVRegIwwCZgBJgBxDr5Nafu9lB3BJgF5oBmKGetk6Wy2v814iTfGMo4aanxZIzSe4A3Wf0EZI99AjxjnSyH/QPA0Q5ybwGHymiXbHtXAxmltwFf4p9VdlvK/N5vnZxL0S1C7pucc8Op8STCzbwG/AwcBgRYASaBfcAU/gG9F055AfgeeAJYCO1ohHIYmK+gndr2ogZaAD7OtHEo8/tBYJzM57OXxmzXXXer1y2eyl78VOx56+TbTHwGOBe65mdZTcRm4JR1crEP2oVJMZB18juwP0fjIWAn8IV1Mp2qW6SdcZIa+O4jJjWeyj1AM0pCls+BA5n9ZdYOGnulnUIlA4VkHsePI/b1Sjcm703O6wJS46lsAi51OP43MGSUHrNO/sE7fLdRegX4k9Vv2hwwbZ1IBe0UqhroWGjf49bJbA91ryFvMeR6JHmCzHc0h8VQjofyRXzi9gIH8V3aEeBt4Buj9FQF7RQKGyg+EAaPO4F3rZPPeqWbx6AkeR7Y0OH4LaFsAlgnX1snDwA3AbcBdwJ3AzuAC/jEl9JOpJSBjNL34U15HnilV7rtiJO8CIwbpavGU2ni3duO24G5eO5rnaxYJ/PWSdM6uWSdWOBsqF9JuyDJBjJKjwAnwu7Tba7bU2PGyfkD/3ZurRgHwCg9apQuMgI/A2yMutmWxmbgYWC6gA7AGHClT9oxZQz0OrANOGSdnO+hblviBJzCdx8njNLHgLPWyUyJOOHvx5/wq1GqSztOBp3jRulHw3nLeMfuxi8EXF38CMmZxHdXY5ltEngE+KGsdtAfBZYKzEPPALuM0lPWyUeRRstApzOxXcAe4LR18k6vdLtxQxwwSr8EvIx/aEvWyc0l41uB74AF6+TWbg0xSt+FH0DdD2zB9zKL+IQdbM0hQ90Pgcfw07chrl0wuAg8lR2ZJmpfNad10tGcRukG8CPeXJ+y1kAbgR3WiTVKA/yG74ZPAr+wdtXrA+vkSopup/a1WJPkzA1MAMPR0D4pbpR+FXjSOrm3SGMy5zWARtEpTfgkjON7plnrpFPdjtr9Mme47l9d5O6wTuZSdIvQNslVMUpvAL4C3rdO3ujXdfpBv8wZBqjZ5dfW1opdyDNoqulj+pbk9cp6NmdNTU1NzbrmX/8HOQK6OoTFAAAAAElFTkSuQmCC" alt="" width="121" height="24"/> <a href="#" id="antibotlinks_reset">( reset )</a></div></div>                <div class="atb">
+                    <div class="antibotlinks"></div>                </div>
+              
+                <div class="atb">
+                                    </div>
+                <input type="hidden" name="csrf_token_name" id="token" value="b837b9155bd5fdc2971fd7470475422f">
+                <div class="atb">
+                    <div class="antibotlinks"></div><div class="antibotlinks"></div>                </div>
+             
+                <div class="atb">
+                                    </div>
+                <div class="ads">
+                    <ins class="6865ffa7530e975de8de56d1" style="display:inline-block;width:300px;height:250px;"></ins><script>!function(e,n,c,t,o,r,d){!function e(n,c,t,o,r,m,d,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js?v="+d,a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","6865ffa7530e975de8de56d1",["cdn.bmcdn6.com"], 0, new Date().getTime())}();</script>                </div>
+                <div class="atb">
+                                    </div>
+                
+                <div class="atb">
+                                    </div>
+                  <div class="ads">
+
+            <div id="7SAD15682C72B912824" data-7pub="7SAD15682C72B912824"></div>
+    <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+    <script>
+    (function() {
+         initBannerAd(['7SAD15682C72B912824', 'banner',2])
+    }())
+    </script>
+        </div>
+                <button type="submit" class="btn btn-primary btn-lg claim-button" disabled><i class="far fa-check-circle"></i> Collect your reward </button>
+            </form>
+            </div>
+    <div class="col-6 col-md-2 col-lg-3 order-md-1 p-0 left-ads"><div id="7SAD15682CAD08010C6" data-7pub="7SAD15682CAD08010C6"></div>
+    <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+    <script>
+    (function() {
+         initBannerAd(['7SAD15682CAD08010C6', 'banner',4])
+    }())
+    </script></div>
+    <div class="col-6 col-md-2 col-lg-3 order-md-3 p-0 right-ads"><div id="7SAD15682CAD08010C6" data-7pub="7SAD15682CAD08010C6"></div>
+    <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+    <script>
+    (function() {
+         initBannerAd(['7SAD15682CAD08010C6', 'banner',4])
+    }())
+    </script></div>
+</div>
+<div class="ads">
+    <div id="7SAD15682C72B912824" data-7pub="7SAD15682C72B912824"></div>
+    <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+    <script>
+    (function() {
+         initBannerAd(['7SAD15682C72B912824', 'banner',2])
+    }())
+    </script>
+
+<div id="7SAD15684992C0E123A" data-7pub="7SAD15684992C0E123A"></div>
+    <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+    <script>
+    (function() {
+         initBannerAd(['7SAD15684992C0E123A', 'banner',5])
+    }())
+    </script>
+
+
+<div id="7SAD15686DE79A70529" data-7pub="7SAD15686DE79A70529"></div>
+                      <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+                      <script>
+                      (function() {
+                        initBannerAd(['7SAD15686DE79A70529', 'banner',  1])
+                        }())
+                      </script>
+                      <div id="7SAD15686DE789B9853" data-7pub="7SAD15686DE789B9853"></div>
+                      <script src="https://code.adclickppc.com/7s-banner-ad.js"></script>
+                      <script>
+                      (function() {
+                        initBannerAd(['7SAD15686DE789B9853', 'banner',  3])
+                        }())
+                      </script></div>                    <!-- end row -->
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+          
+        </div>
+        <!-- end main content-->
+
+
+   <!-- Footer -->
+    <footer class="footer-1">
+        <div class="container text-center">
+          
+            <h3>Powered by <a class="text-success" href="#">ClaimCoin</a></h3>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <div class="container text-center">
+              <p>&copy; 2024 ClaimCoin | All Rights Reserved</p>
+        </div>
+    </div>
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- Right bar overlay-->
+
+
+
+
+    <div class="rightbar-overlay">
+
+        <div>
+            <a></a>
+        </div>
+    </div>
+        <!-- JAVASCRIPT -->
+    <script src="https://claimcoin.in/assets/libs/jquery/jquery.min.js"></script>
+    <script src="https://claimcoin.in/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://claimcoin.in/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="https://claimcoin.in/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="https://claimcoin.in/assets/libs/node-waves/waves.min.js"></script>
+
+        <script type="text/javascript">
+        var site_url = "https://claimcoin.in/";
+    </script>
+    <!-- App js -->
+    <script src="https://claimcoin.in/assets/js/app.js?v=4.4.2"></script>
+    <script src="https://claimcoin.in/assets/js/vie/captcha.js?v=4.4.2"></script>
+                    <script type="text/javascript">
+        $("a[href='https://claimcoin.in/faucet']").attr('data-active', 'true');
+    </script>
+            <script type="text/javascript">var ablinks= ["<a href=\"#\" rel=\"7587\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAABjPNNTAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABUklEQVRYhe3WP0oEMRTH8S+yiE0aC5FlWFewEgIprO1ErLzB1rZi5S0WvMRae5FALhCtLLaQzR7AZlji4OLLn7XQ/KrMvEzeh8nMMNDS0tLyv6KNGmmjptL5e7+N0EZdAi/AuXS9US4C6JwNfgviEXgCvDbqELjoUVfAWT/1bWfIDMQMuAH2gXG0lK+GLEU4G+bAXBt1B9z3tZWzYS1FSp7JGfAA3EbALwhnwzXwHNW+Q5wOr62GrIjofqhvTcrbXYqYROPXhL5JyGyENuoAOIpOid9sSEOWICaDY5/QV4asgBjWd3InSxFxfe1s+BD2BfKRqYiTaOyFPTfJQeYg4uuTthrkyFLENBonfX4g704mIfqfkePolBf23ESKLEF0gz71t7sCoujzA7JftVLEGHgHVsDS2bBMEiJDFiGcDQtgkQqLI0HuHNHS0tLS0tLyt/IJscGHkEpipo8AAAAASUVORK5CYII=\" alt=\"\" width=\"41\" height=\"40\" style=\"border:1px solid #222222;border-radius:5px;margin:2px;\" /></a>","<a href=\"#\" rel=\"5161\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAoCAYAAABuIqMUAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACoUlEQVRYhe2Xv2tVMRTHPz7k5SHyaEuRIqGIOIgBfywOgg5OIm5v6Co6SP8DB0dHHQR3J5eqIGh1KSKiIAWlilkcHGp4VCnPRynFlFIc7gmmj3u9ebVFkHwhJDf3JOd7vjk3yYWMjIyMjP8Ze/6FU6VNAzgGjAMjQAuY985+GWaeHSOvtNkHjEkZkRLaM97ZrthNAk8APTDFBtDxzr5O9bk3kViKUrPA8YopPgJdaV+lIL4KvAX6wDngANABdo78n5RS2sRK9aVeB14BPSE1QRFwQFPqRe/slPh4AJyXAJLRSLCJlZoDHgLfKQLvRHY9qde8s1Pe2Wngk/SNR3Y/pI4DCoGPpVNPI79FKe/stYhUrFQg0FbahL5HwG3gfQ3REHgcUC1Scj5VqWDXENu+d3amZL5AtKW0aXpn1yt81CKFfKpSvah9SWmzArSBz97Z+ZL5wpxLUd9Q5FPSZotS0i5TaiVq3wHuSf1caXMjeheTD+ODj6bSppXACUgjP6hU3BeTXwIWgQXgBfBYngGmlTZhleMVCuPLfNRimLQJzpYYUMo7+9M7OwecigcqbS5TfLAtio+7W0F0MKAuCRgmbcLEVBAow3LJ2B6wWdI3aFeL7aZNqTOlzUGlzVGlzUSVnXcWijMjHruttElVvlYp2ds/AG+AKzWkQn84vHZH+VSlxC7sOKMldmXb6mjJ2GTySRczIdGmXqkev2+TUJ7z8fgjSpuL8i6sbvJWmUq+B0wSKRUdQjGpZeAwcEhpcwHYL6QaETmAdxQXsTNSAjaBl7tBHuqVmgVOAyeB+1H/KvA0er4lvk8AaxQr+w145p1d2GnyqUrdlfosxdW4D3yl+BkJBxbe2Q3gZirJKiT9ScnpeJ2/VCojIyMjIyMjI6MavwBMleEQ4RkabQAAAABJRU5ErkJggg==\" alt=\"\" width=\"47\" height=\"40\" style=\"border:1px solid #222222;border-radius:5px;margin:2px;\" /></a>","<a href=\"#\" rel=\"4417\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAoCAYAAACB4MgqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACmUlEQVRYhe3XP4hcVRTH8Y/BYxGWEGQJS4pFVLbwzyIxSCAk2IjmgkFQC1E7K1FTiFhYhVSyaqqg2G0KQbBQ0IugIMRWJFksRCSFiIouqwQJy94hWLw3MJm8mX3jPBHlfZt575zD7/3mzp3zzqWnp6en57/MTbMUp4jbcQoruIxXcyl/Tqh9AI/iUi7lg3m0mtgzg+njuIRD+BqHsd5Qtz9FrOMzPIP1FLH4d7TmNp4iFvA+3s2lHMulvIZjWE0R943UHcSXWMIduL9+xuqsWp0Yxwv4Ay8PA7mUHZzDk7WhA/gCGziRS9nMpWzhh1m1ujT+ON7OpYzHP8Xx+vp1fIWncynXRmqWXG++jdb8pIiFFFFSxMqE/M/1560pYjy3miJ+m1WrDW1W/C5s47sJ+e0UsS+XstWwiifx+axaLTy1Mn4QvzaYGrKDxQm5p/BRR1rX0cb4Plydkr+GvePBFHEItyHPq9VEG+N7dnnYJE7hw1zKlQ60buDmFjUD07/gAWyNBlLEEp7AiXm1JtFmxTdVe/MGUsReLOCXsdSLuJxLudCBViNtjP+ExfFWV7OMzdG+nSL243m8Oa/WNNoYH7au5YbcYfw4FnsFV3C+A62J7Go8l7KN73GkIX1UNSShegmpVnutaeVm0dqNtq/8C3ioIf6gaqgaclr153qnA62ptDX+CR5LEbcMAyniiOon/7i+vxPP4XQuZTCPVhvatEOqAWiAl/BGHTuD90b69FnVZHg+RSzjHtU4e3d9fTWXcrSlVjfGcymDFLGGMyliB/fWpp6FFHESj6i6xu+qtjbAt7ioOiRstNHq1HjNW6qDwVpt5uFcyrDnrqj27obqZHMR30zZMtO0/hkm9OB/Xaunp6enp6fnf8lfo+0FHNkVid8AAAAASUVORK5CYII=\" alt=\"\" width=\"46\" height=\"40\" style=\"border:1px solid #222222;border-radius:5px;margin:2px;\" /></a>"]</script>        <script src="https://claimcoin.in/assets/js/vie/antibotlinks.js?v=4.4.2"></script>
+                <script src="https://claimcoin.in/assets/js/vie/faucet.js?v=4.4.2"></script>
+                    <script>
+            $('option[value=recaptchav3]').attr('selected', 'selected');
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+       
+      <script async src="https://appsha-pnd.ctengine.io/js/script.js?wkey=yyugW2L6hZ"></script>
+      
+      <div style="position:fixed; padding: 3px; bottom: 10px; left: 8px; width: 300px; height:250px; z-index: 999999;"> 
+
+<span id="" style="position: absolute; z-index: 999999; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); top: 6px; left: 6px; font-family: Arial, sans-serif; font-size: 11px; text-decoration: none; padding: 1px 2px 2px; border-radius: 4px 4px 4px; font-weight: 400; cursor: pointer; line-height: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 0px;" onclick="$(this).parent().fadeOut();">X</span> 
+
+
+<center><div id="banner-container">
+<div class="banner30" style="display:none">
+<ins class="6865fff2530e975de8de5812" style="display:inline-block;width:1px;height:1px;"></ins><script>!function(e,n,c,t,o,r,d){!function e(n,c,t,o,r,m,d,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js?v="+d,a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","6865fff2530e975de8de5812",["cdn.bmcdn6.com"], 0, new Date().getTime())}();</script>
+</div>
+
+<div class="banner30" style="display:none">
+<ins class="6865ffa7530e975de8de56d1" style="display:inline-block;width:300px;height:250px;"></ins><script>!function(e,n,c,t,o,r,d){!function e(n,c,t,o,r,m,d,s,a){s=c.getElementsByTagName(t)[0],(a=c.createElement(t)).async=!0,a.src="https://"+r[m]+"/js/"+o+".js?v="+d,a.onerror=function(){a.remove(),(m+=1)>=r.length||e(n,c,t,o,r,m)},s.parentNode.insertBefore(a,s)}(window,document,"script","6865ffa7530e975de8de56d1",["cdn.bmcdn6.com"], 0, new Date().getTime())}();</script>
+
+</div>
+
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function() {
+      var banners = $(".banner30");
+      var randomBanner = banners[Math.floor(Math.random() * banners.length)];
+      $(randomBanner).css("display", "block");
+   });
+</script> </center>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'971faf5ada1d600a',t:'MTc1NTY2OTc3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+<element hidden>
+<!-- BEGIN: Powered by Supercounters.com -->
+<center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1677002,"ffffff","e61c1c");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
+</center>
+<!-- END: Powered by Supercounters.com -->
+</element>
+
+
+
